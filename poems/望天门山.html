@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>望天门山 · 诗仙李白带你看长江</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(180deg, #ffeaa7 0%, #fdcb6e 30%, #fab1a0 70%, #ff7675 100%);
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  /* ===== 封面 ===== */
+  .cover {
+    max-width: 800px;
+    margin: 30px auto;
+    background: linear-gradient(135deg, #fff 0%, #ffe5b4 100%);
+    border-radius: 30px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 6px solid #2d3436;
+    position: relative;
+  }
+  .cover::before {
+    content: "诗仙李白";
+    position: absolute;
+    top: -25px;
+    right: 20px;
+    background: #e17055;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: rotate(8deg);
+  }
+  .cover h1 {
+    font-size: 48px;
+    color: #2d3436;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 0 #ffeaa7;
+  }
+  .cover .author {
+    font-size: 22px;
+    color: #636e72;
+    margin-bottom: 30px;
+  }
+  .cover .author span {
+    color: #e17055;
+    font-weight: bold;
+    font-size: 28px;
+  }
+  .li-bai-intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    background: #ffeaa7;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px dashed #fdcb6e;
+  }
+  .li-bai {
+    font-size: 80px;
+    animation: wave 2s ease-in-out infinite;
+  }
+  @keyframes wave {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  .li-bai-text {
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2d3436;
+  }
+
+  /* ===== 漫画面板 ===== */
+  .comic {
+    max-width: 800px;
+    margin: 30px auto;
+  }
+  .panel {
+    background: white;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 5px solid #2d3436;
+    overflow: hidden;
+    position: relative;
+  }
+  .panel-scene {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+  .panel-content {
+    padding: 25px;
+  }
+  .panel-poem {
+    background: #fdcb6e;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #2d3436;
+    text-align: center;
+    margin-bottom: 15px;
+    border: 3px solid #2d3436;
+  }
+  .panel-explain {
+    background: #dfe6e9;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #2d3436;
+    border-left: 6px solid #e17055;
+  }
+  .panel-explain strong { color: #e17055; }
+
+  /* 气泡 */
+  .bubble {
+    position: absolute;
+    background: white;
+    border: 3px solid #2d3436;
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 3px 3px 0 #2d3436;
+    max-width: 200px;
+  }
+  .bubble::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+  }
+  .bubble-left {
+    left: 15px;
+    top: 15px;
+  }
+  .bubble-left::after {
+    left: -20px;
+    top: 20px;
+    border-right-color: #2d3436;
+  }
+  .bubble-right {
+    right: 15px;
+    top: 15px;
+    background: #ffeaa7;
+  }
+  .bubble-right::after {
+    right: -20px;
+    top: 20px;
+    border-left-color: #2d3436;
+  }
+
+  /* === Panel 1: 江水劈山 === */
+  .scene-1 {
+    background: linear-gradient(180deg, #74b9ff 0%, #a29bfe 60%, #fdcb6e 100%);
+  }
+  .sun-1 {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
+    background: #ffeaa7;
+    border-radius: 50%;
+    box-shadow: 0 0 30px #ffeaa7;
+  }
+  .mountain-1 {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+  }
+  .mountain-left {
+    left: 0;
+    border-left: 200px solid #00b894;
+    border-top: 200px solid transparent;
+    border-bottom: 0 solid transparent;
+  }
+  .mountain-right {
+    right: 0;
+    border-right: 200px solid #00b894;
+    border-top: 200px solid transparent;
+    border-bottom: 0 solid transparent;
+  }
+  .river-1 {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(180deg, #0984e3, #74b9ff);
+  }
+  .wave-1 {
+    position: absolute;
+    width: 30px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: flow 3s linear infinite;
+  }
+  .wave-1:nth-child(1) { top: 10px; left: 20%; animation-delay: 0s; }
+  .wave-1:nth-child(2) { top: 30px; left: 50%; animation-delay: 1s; }
+  .wave-1:nth-child(3) { top: 50px; left: 75%; animation-delay: 2s; }
+  @keyframes flow {
+    0% { transform: translateX(0); opacity: 0.7; }
+    100% { transform: translateX(100px); opacity: 0; }
+  }
+
+  /* === Panel 2: 碧水回旋 === */
+  .scene-2 {
+    background: linear-gradient(180deg, #81ecec 0%, #74b9ff 100%);
+  }
+  .water-2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: radial-gradient(ellipse at center, #0984e3 0%, #74b9ff 70%);
+  }
+  .whirl {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    border: 8px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: translateX(-50%) rotate(0); }
+    to { transform: translateX(-50%) rotate(360deg); }
+  }
+  .rock-2 {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+  }
+  .rock-left-2 {
+    left: 0;
+    border-left: 150px solid #00b894;
+    border-top: 150px solid transparent;
+  }
+  .rock-right-2 {
+    right: 0;
+    border-right: 150px solid #00b894;
+    border-top: 150px solid transparent;
+  }
+
+  /* === Panel 3: 青山相对 === */
+  .scene-3 {
+    background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 100%);
+  }
+  .mountain-pair-left, .mountain-pair-right {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+  }
+  .mountain-pair-left {
+    left: 30px;
+    border-left: 250px solid #00b894;
+    border-top: 240px solid transparent;
+  }
+  .mountain-pair-right {
+    right: 30px;
+    border-right: 250px solid #00b894;
+    border-top: 240px solid transparent;
+  }
+  .face {
+    position: absolute;
+    font-size: 40px;
+  }
+  .face-left { left: 130px; top: 100px; }
+  .face-right { right: 130px; top: 100px; }
+
+  /* === Panel 4: 孤帆日边 === */
+  .scene-4 {
+    background: linear-gradient(180deg, #fab1a0 0%, #ff7675 50%, #fdcb6e 100%);
+  }
+  .big-sun {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background: #ffeaa7;
+    border-radius: 50%;
+    box-shadow: 0 0 60px #ffeaa7, 0 0 100px #ff7675;
+  }
+  .sea-4 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(180deg, #74b9ff, #0984e3);
+  }
+  .boat {
+    position: absolute;
+    bottom: 60px;
+    left: 30%;
+    font-size: 50px;
+    animation: sail 4s ease-in-out infinite;
+  }
+  @keyframes sail {
+    0%, 100% { transform: translateX(0) rotate(-2deg); }
+    50% { transform: translateX(20px) rotate(2deg); }
+  }
+  .bird-4 {
+    position: absolute;
+    font-size: 24px;
+    animation: fly 8s linear infinite;
+  }
+  .bird-4:nth-child(1) { top: 30px; left: 10%; animation-delay: 0s; }
+  .bird-4:nth-child(2) { top: 50px; left: 70%; animation-delay: 3s; }
+  @keyframes fly {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(200px) translateY(-20px); }
+    100% { transform: translateX(400px) translateY(0); }
+  }
+
+  /* ===== 知识卡 ===== */
+  .knowledge {
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 5px solid #6c5ce7;
+  }
+  .knowledge h2 {
+    color: #6c5ce7;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .knowledge-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .fact {
+    background: #a29bfe;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .fact .num {
+    display: block;
+    font-size: 36px;
+    margin-bottom: 5px;
+  }
+
+  /* ===== 跟我读 ===== */
+  .read-along {
+    max-width: 800px;
+    margin: 30px auto;
+    background: linear-gradient(135deg, #fd79a8 0%, #e17055 100%);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 5px solid #2d3436;
+    color: white;
+  }
+  .read-along h2 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 0 #2d3436;
+  }
+  .read-line {
+    background: rgba(255,255,255,0.95);
+    color: #2d3436;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 3px solid #2d3436;
+  }
+  .read-line:hover { transform: scale(1.05); }
+  .read-line:active { transform: scale(0.95); background: #ffeaa7; }
+  .hint {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 15px;
+    opacity: 0.9;
+  }
+
+  /* ===== 完整诗 ===== */
+  .full-poem {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #2d3436;
+    color: #ffeaa7;
+    border-radius: 25px;
+    padding: 40px 30px;
+    text-align: center;
+    border: 5px solid #ffeaa7;
+    box-shadow: 0 0 30px rgba(253, 203, 110, 0.5);
+  }
+  .full-poem h2 {
+    color: #fdcb6e;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  .full-poem .verse {
+    font-size: 28px;
+    line-height: 2.2;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+
+  /* ===== 底部 ===== */
+  .footer {
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: center;
+    color: #2d3436;
+    font-size: 16px;
+    padding: 20px;
+  }
+  .footer .heart { color: #e17055; font-size: 24px; }
+
+  @media (max-width: 600px) {
+    .cover h1 { font-size: 36px; }
+    .li-bai { font-size: 60px; }
+    .li-bai-text { font-size: 16px; }
+    .panel-scene { height: 200px; }
+    .panel-poem { font-size: 20px; }
+    .knowledge-grid { grid-template-columns: 1fr; }
+    .full-poem .verse { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <h1>🌄 望天门山 🌊</h1>
+  <div class="author">唐 · <span>李白</span></div>
+
+  <div class="li-bai-intro">
+    <div class="li-bai">👨‍🎓</div>
+    <div class="li-bai-text">
+      嘿，小朋友！<br>
+      我是李白，大家都叫我<b>"诗仙"</b>。<br>
+      我最喜欢坐着小船去看漂亮的大山大河。<br>
+      今天我带你去长江边，看一座神奇的山！
+    </div>
+  </div>
+</div>
+
+<!-- 漫画四联 -->
+<div class="comic">
+
+  <!-- 第1联 -->
+  <div class="panel">
+    <div class="panel-scene scene-1">
+      <div class="sun-1"></div>
+      <div class="mountain-1 mountain-left"></div>
+      <div class="mountain-1 mountain-right"></div>
+      <div class="river-1">
+        <div class="wave-1"></div>
+        <div class="wave-1"></div>
+        <div class="wave-1"></div>
+      </div>
+      <div class="bubble bubble-left">你们看！<br>长江像一把大刀，<br>把山劈开了！🗡️</div>
+      <div class="bubble bubble-right">太厉害啦！</div>
+    </div>
+    <div class="panel-content">
+      <div class="panel-poem">天门中断楚江开</div>
+      <div class="panel-explain">
+        <strong>楚江</strong> 就是长江（古时候这一段叫楚江）。<br>
+        长江水哗哗地流过来，把<strong>天门山</strong>从中间劈成了两半！<br>
+        就像妈妈切西瓜一样——咔嚓一刀！🍉
+      </div>
+    </div>
+  </div>
+
+  <!-- 第2联 -->
+  <div class="panel">
+    <div class="panel-scene scene-2">
+      <div class="rock-2 rock-left-2"></div>
+      <div class="rock-2 rock-right-2"></div>
+      <div class="water-2"></div>
+      <div class="whirl"></div>
+      <div class="bubble bubble-left">哎呀！水<br>被山挡住，<br>转圈圈啦！🌀</div>
+      <div class="bubble bubble-right">像大浴缸<br>里的水！</div>
+    </div>
+    <div class="panel-content">
+      <div class="panel-poem">碧水东流至此回</div>
+      <div class="panel-explain">
+        <strong>碧水</strong> 是绿绿的水。<br>
+        江水本来一直往东跑，可是被大山挡住了，<br>
+        只好<strong>转了一个大圈</strong>，再继续走！<br>
+        你看，水也会"急刹车"呢！🚗
+      </div>
+    </div>
+  </div>
+
+  <!-- 第3联 -->
+  <div class="panel">
+    <div class="panel-scene scene-3">
+      <div class="mountain-pair-left"></div>
+      <div class="mountain-pair-right"></div>
+      <div class="face face-left">😀</div>
+      <div class="face face-right">😀</div>
+      <div class="bubble bubble-left">这两座山<br>像两个<br>好朋友！</div>
+      <div class="bubble bubble-right">面对面<br>笑呢！</div>
+    </div>
+    <div class="panel-content">
+      <div class="panel-poem">两岸青山相对出</div>
+      <div class="panel-explain">
+        长江的两<strong>岸</strong>，各有一座<strong>青山</strong>。<br>
+        它们面对面站着，就像两个小朋友<br>
+        <strong>你看着我，我看着你</strong>，一直在打招呼！👋<br>
+        船往前开，它们好像也跟着跑出来一样～
+      </div>
+    </div>
+  </div>
+
+  <!-- 第4联 -->
+  <div class="panel">
+    <div class="panel-scene scene-4">
+      <div class="big-sun"></div>
+      <div class="sea-4"></div>
+      <div class="boat">⛵</div>
+      <div class="bird-4">🕊️</div>
+      <div class="bird-4">🕊️</div>
+      <div class="bubble bubble-left">哇！太阳<br>像个大蛋黄！🥚</div>
+      <div class="bubble bubble-right">小船慢慢<br>划过来啦！</div>
+    </div>
+    <div class="panel-content">
+      <div class="panel-poem">孤帆一片日边来</div>
+      <div class="panel-explain">
+        <strong>孤帆</strong> 就是一只小船（孤零零一只）。<br>
+        太阳快要落山了，<strong>一叶小舟</strong>从远处慢慢划过来。<br>
+        红红的太阳、金色的小船、蓝蓝的江水——<br>
+        哇，这幅画太美啦！🎨
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 知识小卡片 -->
+<div class="knowledge">
+  <h2>🌟 你知道吗？</h2>
+  <div class="knowledge-grid">
+    <div class="fact"><span class="num">1200+</span>李白活了六十多年</div>
+    <div class="fact"><span class="num">1000+</span>他写了近千首诗歌</div>
+    <div class="fact"><span class="num">25岁</span>写这首诗的时候，他才25岁！</div>
+    <div class="fact"><span class="num">安徽</span>天门山在今天的安徽省</div>
+  </div>
+</div>
+
+<!-- 跟我读 -->
+<div class="read-along">
+  <h2>🎤 跟我一起读（点一点会变色哦）</h2>
+  <div class="read-line">天门中断楚江开</div>
+  <div class="read-line">碧水东流至此回</div>
+  <div class="read-line">两岸青山相对出</div>
+  <div class="read-line">孤帆一片日边来</div>
+  <div class="hint">👆 点每一行，背给爸爸妈妈听！</div>
+</div>
+
+<!-- 完整诗 -->
+<div class="full-poem">
+  <h2>— 望天门山 —</h2>
+  <div class="verse">天门中断楚江开，</div>
+  <div class="verse">碧水东流至此回。</div>
+  <div class="verse">两岸青山相对出，</div>
+  <div class="verse">孤帆一片日边来。</div>
+</div>
+
+<div class="footer">
+  <div class="heart">❤️</div>
+  愿小朋友爱上古诗 · 像李白一样看见世界的美
+</div>
+
+</body>
+</html>
