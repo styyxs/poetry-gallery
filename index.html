@@ -3,284 +3,378 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>森哥的古诗绘本馆</title>
-<!-- Inter font (Plain Black substitute at weight 500 + neg letter-spacing) -->
+<title>森哥的古诗绘本馆 · 国风动漫</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
 <style>
-/* === Clay Design System Tokens === */
 :root {
-  --canvas: #fffaf0;
-  --surface-soft: #faf5e8;
-  --surface-card: #f5f0e0;
-  --surface-strong: #ebe6d6;
-  --ink: #0a0a0a;
-  --body: #3a3a3a;
-  --body-strong: #1a1a1a;
-  --muted: #6a6a6a;
-  --muted-soft: #9a9a9a;
-  --hairline: #e5e5e5;
-  --hairline-soft: #f0f0f0;
-  --brand-pink: #ff4d8b;
-  --brand-teal: #1a3a3a;
-  --brand-lavender: #b8a4ed;
-  --brand-peach: #ffb084;
-  --brand-ochre: #e8b94a;
-  --brand-mint: #a4d4c5;
-  --brand-coral: #ff6b5a;
-  --on-primary: #ffffff;
-  --on-dark: #ffffff;
-  --on-light: #0a0a0a;
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-pill: 9999px;
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-xxl: 48px;
-  --space-section: 80px;
-  --max-width: 1280px;
+  --bg: #f7f3e9;
+  --paper: #fcf9f2;
+  --ink: #2c2416;
+  --ink-soft: #5a4e3c;
+  --ink-muted: #8a7e6c;
+  --gold: #c9a84c;
+  --gold-light: #e8d5a3;
+  --red: #c04040;
+  --red-light: #e8c0c0;
+  --green: #5a8a6a;
+  --green-light: #c0d8c8;
+  --blue: #5a7a9a;
+  --blue-light: #c0d0e0;
+  --purple: #8a6a9a;
+  --purple-light: #d8c8e0;
+  --card-w: min(360px, 100%);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--canvas);
-  color: var(--body);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
+  font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 15% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 75%, rgba(192,64,64,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(90,138,106,0.04) 0%, transparent 70%);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* === Floating clouds === */
+.clouds {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.cloud {
+  position: absolute;
+  opacity: 0.12;
+  animation: drift 40s linear infinite;
+}
+.cloud:nth-child(1) { top: 8%; left: -10%; font-size: 120px; animation-duration: 45s; }
+.cloud:nth-child(2) { top: 25%; left: 60%; font-size: 80px; animation-duration: 38s; animation-delay: -12s; }
+.cloud:nth-child(3) { top: 60%; left: 30%; font-size: 100px; animation-duration: 50s; animation-delay: -25s; }
+.cloud:nth-child(4) { top: 80%; left: 70%; font-size: 70px; animation-duration: 35s; animation-delay: -6s; }
+@keyframes drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(120vw); }
+}
+
+/* === Main container === */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 /* === Hero === */
 .hero {
-  padding: var(--space-section) var(--space-lg) var(--space-xxl);
   text-align: center;
-  max-width: var(--max-width);
-  margin: 0 auto;
+  padding: 80px 0 60px;
+  position: relative;
+}
+.hero .seal {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--red);
+  color: var(--red);
+  font-family: "Noto Serif SC", serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: center;
+  transform: rotate(-15deg);
+  margin-bottom: 24px;
+  opacity: 0.85;
 }
 .hero h1 {
-  font-family: "Inter", sans-serif;
-  font-size: 56px;
-  font-weight: 500;
-  letter-spacing: -2px;
-  line-height: 1.05;
-  color: var(--ink);
-  margin-bottom: var(--space-md);
-}
-.hero .lead {
-  font-size: 18px;
+  font-family: "ZCOOL KuaiLe", "Noto Serif SC", cursive;
+  font-size: 48px;
   font-weight: 400;
-  color: var(--muted);
-  max-width: 540px;
-  margin: 0 auto var(--space-lg);
-  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 0 var(--gold-light);
 }
-.hero .count-badge {
-  display: inline-flex;
+.hero .subtitle {
+  font-family: "Noto Serif SC", serif;
+  font-size: 16px;
+  color: var(--ink-muted);
+  letter-spacing: 2px;
+}
+.hero .deco-line {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  background: var(--surface-card);
-  color: var(--muted);
-  padding: 6px 18px;
-  border-radius: var(--radius-pill);
-  font-size: 13px;
-  font-weight: 500;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+.hero .deco-line span {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+.hero .deco-diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
 }
 
-/* === Gallery Grid === */
+/* === Section title === */
+.section-title {
+  text-align: center;
+  padding: 20px 0 32px;
+  font-family: "Noto Serif SC", serif;
+  font-size: 14px;
+  color: var(--ink-muted);
+  letter-spacing: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.section-title::before,
+.section-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* === Gallery === */
 .gallery {
-  max-width: var(--max-width);
-  margin: 0 auto var(--space-section);
-  padding: 0 var(--space-lg);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+  padding-bottom: 80px;
 }
 
-/* === Poem Cards (Clay feature-card style) === */
+/* === Poem Card === */
 .card {
   display: block;
   text-decoration: none;
-  color: inherit;
-  border-radius: var(--radius-xl);
-  padding: var(--space-xl);
-  transition: transform 0.2s ease;
+  color: var(--ink);
+  background: var(--paper);
+  border-radius: 4px 20px 4px 20px;
+  padding: 32px 28px 28px;
   position: relative;
   overflow: hidden;
-  min-height: 280px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:
+    0 2px 12px rgba(44,36,22,0.06),
+    0 0 0 1px rgba(201,168,76,0.12);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--gold), var(--green), var(--blue));
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 8px 28px rgba(44,36,22,0.10),
+    0 0 0 1px rgba(201,168,76,0.25);
+}
+
+/* Card corner stamp */
+.card .corner-stamp {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 28px; height: 28px;
+  border: 1.5px solid var(--gold);
+  border-radius: 2px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--gold);
+  transform: rotate(12deg);
+  opacity: 0.6;
 }
-.card:hover { transform: translateY(-4px); }
 
-/* 6-color rotation — anchors Clay's saturated feature-card rhythm */
-.card:nth-child(6n+1) { background: var(--brand-pink); color: var(--on-primary); }
-.card:nth-child(6n+2) { background: var(--brand-teal); color: var(--on-dark); }
-.card:nth-child(6n+3) { background: var(--brand-lavender); color: var(--on-light); }
-.card:nth-child(6n+4) { background: var(--brand-peach); color: var(--on-light); }
-.card:nth-child(6n+5) { background: var(--brand-ochre); color: var(--on-light); }
-.card:nth-child(6n+0) { background: var(--surface-card); color: var(--on-light); border: 1px solid var(--hairline); }
-
+/* Card illustration area */
 .card-illustration {
-  font-size: 52px;
-  line-height: 1;
-  margin-bottom: var(--space-md);
-  opacity: 0.9;
+  height: 120px;
+  margin: -12px -8px 20px;
+  border-radius: 2px 16px 2px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  position: relative;
+  overflow: hidden;
 }
+.card:nth-child(5n+1) .card-illustration { background: linear-gradient(135deg, var(--red-light), #f0d8d8); }
+.card:nth-child(5n+2) .card-illustration { background: linear-gradient(135deg, var(--green-light), #d8e8d8); }
+.card:nth-child(5n+3) .card-illustration { background: linear-gradient(135deg, var(--blue-light), #d8d8e8); }
+.card:nth-child(5n+4) .card-illustration { background: linear-gradient(135deg, var(--purple-light), #e0d8e8); }
+.card:nth-child(5n+5) .card-illustration { background: linear-gradient(135deg, var(--gold-light), #f0e8d0); }
+
+.card-illustration::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 40px; height: 40px;
+  border-left: 20px solid transparent;
+  border-bottom: 20px solid var(--paper);
+}
+
 .card-title {
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.3px;
-  margin-bottom: var(--space-xs);
+  font-family: "ZCOOL KuaiLe", "Noto Serif SC", cursive;
+  font-size: 24px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  letter-spacing: 2px;
 }
 .card-author {
   font-size: 13px;
-  font-weight: 500;
-  opacity: 0.7;
-  margin-bottom: var(--space-sm);
+  color: var(--ink-muted);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
 }
 .card-excerpt {
+  font-family: "Noto Serif SC", serif;
   font-size: 14px;
-  line-height: 1.65;
-  opacity: 0.85;
-  margin-bottom: var(--space-md);
-  flex: 1;
+  color: var(--ink-soft);
+  line-height: 1.9;
+  letter-spacing: 0.5px;
+  margin-bottom: 18px;
+  text-align: justify;
 }
-
-/* Tags — cream pill badges on colored cards */
 .card-tags {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-top: auto;
 }
 .card-tag {
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(4px);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
+  font-family: "Noto Serif SC", serif;
   font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.3px;
+  color: var(--ink-muted);
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.15);
+  padding: 3px 12px;
+  border-radius: 2px;
+  letter-spacing: 1px;
 }
 
-/* Light-card tag variant */
-.card:nth-child(6n+3) .card-tag,
-.card:nth-child(6n+4) .card-tag,
-.card:nth-child(6n+5) .card-tag,
-.card:nth-child(6n+0) .card-tag {
-  background: rgba(0,0,0,0.06);
-}
-
-/* === Empty State === */
-.empty-state {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: var(--space-xxl);
-  color: var(--muted-soft);
-  font-size: 14px;
-}
-
-/* === Footer (Clay: cream footer, NOT dark) === */
+/* === Footer === */
 .footer {
-  background: var(--surface-soft);
-  padding: var(--space-section) var(--space-lg);
   text-align: center;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
+  padding: 40px 24px 60px;
+  position: relative;
+  z-index: 1;
 }
-.footer .divider {
-  display: inline-block;
-  width: 40px;
-  height: 2px;
-  background: var(--hairline);
-  margin-bottom: var(--space-lg);
-  border-radius: 1px;
+.footer .wave {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+.footer .wave span {
+  display: block;
+  width: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: waveAnim 1.2s ease-in-out infinite;
+}
+.footer .wave span:nth-child(1) { height: 12px; animation-delay: 0s; }
+.footer .wave span:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+.footer .wave span:nth-child(3) { height: 16px; animation-delay: 0.2s; }
+.footer .wave span:nth-child(4) { height: 24px; animation-delay: 0.3s; }
+.footer .wave span:nth-child(5) { height: 16px; animation-delay: 0.4s; }
+.footer .wave span:nth-child(6) { height: 12px; animation-delay: 0.5s; }
+@keyframes waveAnim {
+  0%, 100% { transform: scaleY(1); opacity: 0.4; }
+  50% { transform: scaleY(0.3); opacity: 1; }
+}
+.footer p {
+  font-family: "Noto Serif SC", serif;
+  font-size: 13px;
+  color: var(--ink-muted);
+  letter-spacing: 2px;
+  line-height: 2;
 }
 
 /* === Responsive === */
-@media (max-width: 1024px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .hero h1 {
-    font-size: 44px;
-    letter-spacing: -1.5px;
-  }
-}
 @media (max-width: 768px) {
-  .hero {
-    padding: var(--space-xxl) var(--space-md) var(--space-xl);
-  }
-  .hero h1 {
-    font-size: 36px;
-    letter-spacing: -1px;
-  }
-  .gallery {
-    grid-template-columns: 1fr;
-    padding: 0 var(--space-md);
-  }
-  .card {
-    padding: var(--space-lg);
-    min-height: 220px;
-  }
-  .card-illustration { font-size: 42px; }
+  .hero { padding: 48px 0 40px; }
+  .hero h1 { font-size: 34px; }
+  .gallery { grid-template-columns: 1fr; gap: 20px; }
+  .card { padding: 24px 20px; }
+  .card-illustration { height: 100px; font-size: 52px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Hero -->
-<div class="hero">
-  <h1>森哥的古诗绘本馆</h1>
-  <p class="lead">为奥莉和茉莉挑选最美的诗。每一首都是一幅画，点击卡片进入绘本世界。</p>
-  <div class="count-badge" id="count">—</div>
+<!-- Floating clouds -->
+<div class="clouds">
+  <div class="cloud">☁️</div>
+  <div class="cloud">☁️</div>
+  <div class="cloud">☁️</div>
+  <div class="cloud">☁️</div>
 </div>
 
-<!-- Gallery -->
-<div class="gallery" id="gallery"></div>
+<div class="container">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="seal">诗</div>
+    <h1>森哥的古诗绘本馆</h1>
+    <p class="subtitle">为奥莉和茉莉 · 挑选最美的诗</p>
+    <div class="deco-line">
+      <span></span>
+      <div class="deco-diamond"></div>
+      <span></span>
+    </div>
+  </div>
 
-<!-- Footer -->
-<div class="footer">
-  <div class="divider"></div>
-  <p>每一首诗，都是一幅画。<br>打开绘本，听见诗的声音。</p>
+  <div class="section-title">绘本目录</div>
+
+  <!-- Gallery -->
+  <div class="gallery" id="gallery"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <p>打开绘本 · 听见诗的声音</p>
+  </div>
 </div>
 
 <script>
-// Load poems from manifest
 fetch('poems.json?' + Date.now())
   .then(r => r.json())
   .then(poems => {
-    document.getElementById('count').textContent = '共 ' + poems.length + ' 首诗';
-
     const gallery = document.getElementById('gallery');
-    const emojis = ['🌙','🌄','🏔️','🌸','❄️','🎋','🏮','🦅','🐟','🍂','🌊','🕊️','🐉','🎏','🌿','🪷'];
+    const periods = ['唐','宋','元','明','清','先秦'];
+    const icons  = ['🏮','🌙','⛰️','🌸','🎋','🐉','🌊','🦅','🍂','🎐','🏔️','🪷','🌿','🎏','❄️','🕊️'];
 
     poems.forEach((poem, i) => {
       const card = document.createElement('a');
       card.className = 'card';
       card.href = poem.file;
       card.target = '_blank';
-      card.title = poem.title + ' — ' + poem.author;
 
+      const dynasty = poem.author.match(/[唐宋元明清先秦]+/)?.[0] || '诗';
       card.innerHTML =
-        '<div class="card-illustration">' + (emojis[i % emojis.length]) + '</div>' +
+        '<div class="corner-stamp">' + dynasty + '</div>' +
+        '<div class="card-illustration">' + (icons[i % icons.length]) + '</div>' +
         '<div class="card-title">' + poem.title + '</div>' +
         '<div class="card-author">' + poem.author + '</div>' +
         '<div class="card-excerpt">' + poem.summary + '</div>' +
         '<div class="card-tags">' +
-          poem.tags.map(t => '<span class="card-tag">' + t + '</span>').join('') +
+          poem.tags.map(t => '<span class="card-tag">#' + t + '</span>').join('') +
         '</div>';
 
       gallery.appendChild(card);
@@ -288,7 +382,7 @@ fetch('poems.json?' + Date.now())
   })
   .catch(() => {
     document.getElementById('gallery').innerHTML =
-      '<div class="empty-state">古诗正在赶来…</div>';
+      '<div style="grid-column:1/-1;text-align:center;color:var(--ink-muted);padding:40px;">📜 古诗正在赶来…</div>';
   });
 </script>
 
