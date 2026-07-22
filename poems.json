@@ -4,6 +4,7 @@
     "author": "唐·李白",
     "file": "poems/静夜思.html",
     "summary": "床前明月光，疑是地上霜。举头望明月，低头思故乡。",
+    "illus": "poems/静夜思_img/card_cover.webp",
     "tags": [
       "思乡",
       "月亮"
@@ -14,6 +15,7 @@
     "author": "唐·李白",
     "file": "poems/望天门山.html",
     "summary": "天门中断楚江开，碧水东流至此回。两岸青山相对出，孤帆一片日边来。",
+    "illus": "poems/望天门山_img/card_cover.webp",
     "tags": [
       "山水",
       "长江"
@@ -24,6 +26,7 @@
     "author": "唐·王之涣",
     "file": "poems/登鹳雀楼.html",
     "summary": "白日依山尽，黄河入海流。欲穷千里目，更上一层楼。",
+    "illus": "poems/登鹳雀楼_img/card_cover.webp",
     "tags": [
       "山水",
       "登高",
