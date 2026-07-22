@@ -6,237 +6,125 @@
 <title>森哥的古诗绘本馆 · 国风动漫</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+KuaiLe&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f7f3e9;
-  --paper: #fcf9f2;
-  --ink: #2c2416;
-  --ink-soft: #5a4e3c;
-  --ink-muted: #8a7e6c;
-  --gold: #c9a84c;
-  --gold-light: #e8d5a3;
-  --red: #c04040;
-  --card-w: min(360px, 100%);
+  --bg: #f7f3e9;--paper: #fcf9f2;--ink: #2c2416;--ink-soft: #5a4e3c;--ink-muted: #8a7e6c;
+  --gold: #c9a84c;--gold-light: #e8d5a3;--red: #c04040;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Noto Serif SC","PingFang SC","Hiragino Sans GB",serif;
+  background:var(--bg);
+  background-image:radial-gradient(ellipse at 15% 20%,rgba(201,168,76,.08) 0%,transparent 60%),
+    radial-gradient(ellipse at 85% 75%,rgba(192,64,64,.06) 0%,transparent 60%),
+    radial-gradient(ellipse at 50% 50%,rgba(90,138,106,.04) 0%,transparent 70%);
+  color:var(--ink);min-height:100vh;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", serif;
-  background: var(--bg);
-  background-image:
-    radial-gradient(ellipse at 15% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 85% 75%, rgba(192,64,64,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 50% 50%, rgba(90,138,106,0.04) 0%, transparent 70%);
-  color: var(--ink);
-  min-height: 100vh;
-}
+.clouds{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:0;overflow:hidden}
+.cloud{position:absolute;opacity:.10}
+.cloud:nth-child(1){top:8%;left:-10%;font-size:120px;animation:drift 50s linear infinite}
+.cloud:nth-child(2){top:25%;left:60%;font-size:80px;animation:drift 42s linear infinite;animation-delay:-15s}
+.cloud:nth-child(3){top:60%;left:30%;font-size:100px;animation:drift 55s linear infinite;animation-delay:-28s}
+.cloud:nth-child(4){top:80%;left:70%;font-size:70px;animation:drift 38s linear infinite;animation-delay:-8s}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(130vw)}}
 
-/* ========== Floating clouds ========== */
-.clouds { position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:0;overflow:hidden; }
-.cloud { position:absolute;opacity:0.10; }
-.cloud:nth-child(1){top:8%;left:-10%;font-size:120px;animation:drift 50s linear infinite;}
-.cloud:nth-child(2){top:25%;left:60%;font-size:80px;animation:drift 42s linear infinite;animation-delay:-15s;}
-.cloud:nth-child(3){top:60%;left:30%;font-size:100px;animation:drift 55s linear infinite;animation-delay:-28s;}
-.cloud:nth-child(4){top:80%;left:70%;font-size:70px;animation:drift 38s linear infinite;animation-delay:-8s;}
-.cloud:nth-child(5){top:45%;left:85%;font-size:60px;animation:drift 60s linear infinite;animation-delay:-20s;}
-@keyframes drift {from{transform:translateX(0)}to{transform:translateX(130vw)}}
+.container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
 
-.container { position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px; }
+.hero{text-align:center;padding:80px 0 60px}
+.hero h1{font-family:"ZCOOL KuaiLe","Noto Serif SC",cursive;font-size:48px;font-weight:400;color:var(--ink);letter-spacing:4px;margin-bottom:12px;text-shadow:2px 2px 0 var(--gold-light)}
+.hero .subtitle{font-size:16px;color:var(--ink-muted);letter-spacing:2px}
+.hero .deco{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px}
+.hero .deco span{display:block;width:40px;height:1px;background:var(--gold);opacity:.5}
+.hero .deco .dia{width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
 
-/* ========== Hero ========== */
-.hero { text-align:center;padding:80px 0 60px; }
-.hero h1 {
-  font-family:"ZCOOL KuaiLe","Noto Serif SC",cursive;
-  font-size:48px;font-weight:400;color:var(--ink);
-  letter-spacing:4px;margin-bottom:12px;
-  text-shadow:2px 2px 0 var(--gold-light);
-}
-.hero .subtitle {
-  font-size:16px;color:var(--ink-muted);letter-spacing:2px;
-}
-.hero .deco { display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px; }
-.hero .deco span{display:block;width:40px;height:1px;background:var(--gold);opacity:0.5;}
-.hero .deco .dia{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
+.sect-head{text-align:center;padding:16px 0 28px;font-size:14px;color:var(--ink-muted);letter-spacing:6px;display:flex;align-items:center;justify-content:center;gap:14px}
+.sect-head::before,.sect-head::after{content:'';display:block;width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 
-.sect-head { text-align:center;padding:16px 0 28px;font-size:14px;color:var(--ink-muted);letter-spacing:6px;display:flex;align-items:center;justify-content:center;gap:14px; }
-.sect-head::before,.sect-head::after{content:'';display:block;width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;padding-bottom:80px}
 
-/* ========== Gallery ========== */
-.gallery {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
-  gap:28px;padding-bottom:80px;
-}
+.card{display:block;text-decoration:none;color:var(--ink);background:var(--paper);border-radius:4px 20px 4px 20px;overflow:hidden;transition:transform .25s,box-shadow .25s;box-shadow:0 2px 14px rgba(44,36,22,.05),0 0 0 1px rgba(201,168,76,.10)}
+.card:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(44,36,22,.10)}
 
-/* ========== Card ========== */
-.card {
-  display:block;text-decoration:none;color:var(--ink);
-  background:var(--paper);
-  border-radius:4px 20px 4px 20px;
-  padding:0 0 28px 0;
-  overflow:hidden;
-  transition:transform .25s,box-shadow .25s;
-  box-shadow:0 2px 14px rgba(44,36,22,.05),0 0 0 1px rgba(201,168,76,.10);
-}
-.card:hover { transform:translateY(-6px);box-shadow:0 8px 30px rgba(44,36,22,.10); }
+.card-illus{height:200px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;position:relative}
+.card-illus svg{width:100%;height:100%}
 
-/* ——— CSS Illustration Area ——— */
-.card-illus {
-  height:170px;
-  position:relative;
-  overflow:hidden;
-  display:flex;align-items:flex-end;justify-content:center;
-}
+.card-body{padding:24px 28px}
+.card-title{font-family:"ZCOOL KuaiLe","Noto Serif SC",cursive;font-size:24px;color:var(--ink);margin-bottom:4px;letter-spacing:2px}
+.card-author{font-size:13px;color:var(--ink-muted);margin-bottom:12px;letter-spacing:1px}
+.card-excerpt{font-size:14px;color:var(--ink-soft);line-height:1.9;letter-spacing:.5px;margin-bottom:16px;text-align:justify}
+.card-tags{display:flex;gap:8px;flex-wrap:wrap;padding-top:8px;border-top:1px dashed rgba(201,168,76,.2)}
+.card-tag{font-size:12px;color:var(--ink-muted);background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.12);padding:2px 10px;border-radius:2px;letter-spacing:1px}
 
-/* Mountain scene (山水/长江) */
-.illus-mountain { background:linear-gradient(180deg,#dce8f0 0%,#e8ddd0 60%,#d4c8b8 100%); }
-.illus-mountain .peak-l { position:absolute;bottom:0;left:15%;width:0;height:0;border-left:80px solid transparent;border-right:60px solid transparent;border-bottom:130px solid #7a9a7a;opacity:.6; }
-.illus-mountain .peak-r { position:absolute;bottom:0;right:10%;width:0;height:0;border-left:70px solid transparent;border-right:50px solid transparent;border-bottom:110px solid #6a8a6a;opacity:.5; }
-.illus-mountain .peak-c { position:absolute;bottom:0;left:42%;width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:100px solid #8aaa8a;opacity:.55; }
-.illus-mountain .mist { position:absolute;bottom:20px;left:0;right:0;height:40px;background:linear-gradient(0deg,rgba(220,230,240,.8),transparent); }
-.illus-mountain .boat { position:absolute;bottom:45px;left:55%;font-size:12px;color:#5a6a5a;animation:boatSail 6s ease-in-out infinite; }
-@keyframes boatSail { 0%,100%{transform:translateX(0)} 50%{transform:translateX(15px)} }
-
-/* Moon scene (思乡/月亮) */
-.illus-moon { background:linear-gradient(180deg,#1a2a4a 0%,#2a3a5a 40%,#3a4a6a 100%); }
-.illus-moon .moon { position:absolute;top:20px;right:40px;width:60px;height:60px;background:radial-gradient(circle,#ffe8c0,#ffd080);border-radius:50%;box-shadow:0 0 30px rgba(255,208,128,.4),0 0 60px rgba(255,208,128,.15); }
-.illus-moon .star { position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;opacity:.6; }
-.illus-moon .star:nth-child(1){top:15%;left:20%} .illus-moon .star:nth-child(2){top:25%;left:55%}
-.illus-moon .star:nth-child(3){top:10%;left:70%} .illus-moon .star:nth-child(4){top:35%;left:35%}
-.illus-moon .star:nth-child(5){top:20%;left:80%} .illus-moon .star:nth-child(6){top:40%;left:15%}
-.illus-moon .house { position:absolute;bottom:0;left:15%;width:40px;height:25px;background:#3a3028;border-radius:2px;opacity:.7; }
-.illus-moon .house::after { content:'';position:absolute;top:-15px;left:0;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:15px solid #4a3a2a; }
-.illus-moon .tree { position:absolute;bottom:0;right:20%;width:8px;height:40px;background:#2a1a0a;opacity:.6;border-radius:4px 4px 0 0; }
-
-/* Flower scene (春天/花) */
-.illus-flower { background:linear-gradient(180deg,#f8e8e0 0%,#e8d4c8 50%,#d8c8b0 100%); }
-.illus-flower .branch { position:absolute;bottom:30px;left:20%;width:150px;height:6px;background:#6a4a3a;border-radius:3px;transform:rotate(-5deg); }
-.illus-flower .branch::after { content:'';position:absolute;top:-30px;left:60px;width:4px;height:35px;background:#6a4a3a;border-radius:2px;transform:rotate(20deg); }
-.illus-flower .petal { position:absolute;width:14px;height:14px;background:radial-gradient(circle,#ffa0b0,#e06080);border-radius:50% 50% 50% 0;opacity:.85; }
-.illus-flower .petal:nth-child(1){top:60px;left:40%}  .illus-flower .petal:nth-child(2){top:55px;left:45%;transform:rotate(60deg)}
-.illus-flower .petal:nth-child(3){top:58px;left:50%;transform:rotate(120deg)} .illus-flower .petal:nth-child(4){top:62px;left:46%;transform:rotate(180deg)}
-.illus-flower .petal:nth-child(5){top:64px;left:42%;transform:rotate(240deg)} .illus-flower .petal:nth-child(6){top:40px;left:30%;transform:rotate(30deg)}
-.illus-flower .petal:nth-child(7){top:38px;left:55%} .illus-flower .petal:nth-child(8){top:45px;left:60%;transform:rotate(90deg)}
-
-/* Bamboo scene (品格/竹) */
-.illus-bamboo { background:linear-gradient(180deg,#dce8d8 0%,#c8d8c0 50%,#b8c0a8 100%); }
-.illus-bamboo .bam { position:absolute;bottom:0;width:6px;border-radius:3px;background:linear-gradient(180deg,transparent 5%,#5a8a4a 6%,#5a8a4a 14%,transparent 15%,#5a8a4a 16%,#5a8a4a 100%); }
-.illus-bamboo .bam:nth-child(1){left:25%;height:140px;transform:rotate(2deg);}
-.illus-bamboo .bam:nth-child(2){left:35%;height:155px;transform:rotate(-1deg);}
-.illus-bamboo .bam:nth-child(3){left:45%;height:130px;transform:rotate(3deg);}
-.illus-bamboo .bam:nth-child(4){left:55%;height:145px;transform:rotate(-2deg);}
-.illus-bamboo .b-leaf { position:absolute;width:24px;height:8px;background:#6a9a5a;border-radius:0 50% 50% 0;opacity:.7; }
-.illus-bamboo .b-leaf:nth-child(5){top:30px;left:40%;transform:rotate(-20deg);}
-.illus-bamboo .b-leaf:nth-child(6){top:40px;left:52%;transform:rotate(15deg);}
-
-/* Default scene (通用山水) */
-.illus-default { background:linear-gradient(180deg,#e0dcc8 0%,#d8d4c0 40%,#c8c4b0 100%); }
-.illus-default .sun { position:absolute;top:20px;right:30px;width:50px;height:50px;background:radial-gradient(circle,#ffe8a0,#f0c860);border-radius:50%;opacity:.7; }
-.illus-default .bird { position:absolute;top:20px;left:30%;font-size:14px;color:#5a5a4a;animation:birdFly 4s ease-in-out infinite; }
-@keyframes birdFly { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-
-/* ========== Card body ========== */
-.card-body { padding:24px 28px 0; }
-.card-title {
-  font-family:"ZCOOL KuaiLe","Ma Shan Zheng",cursive;
-  font-size:24px;color:var(--ink);margin-bottom:4px;letter-spacing:2px;
-}
-.card-author { font-size:13px;color:var(--ink-muted);margin-bottom:12px;letter-spacing:1px; }
-.card-excerpt {
-  font-size:14px;color:var(--ink-soft);line-height:1.9;letter-spacing:.5px;margin-bottom:16px;
-  text-align:justify;
-}
-.card-tags { display:flex;gap:8px;flex-wrap:wrap;padding-top:8px;border-top:1px dashed rgba(201,168,76,.2); }
-.card-tag {
-  font-size:12px;color:var(--ink-muted);background:rgba(201,168,76,.06);
-  border:1px solid rgba(201,168,76,.12);padding:2px 10px;border-radius:2px;letter-spacing:1px;
-}
-
-/* ========== Footer ========== */
-.footer { text-align:center;padding:40px 24px 60px;position:relative;z-index:1; }
-.footer .waves { display:flex;justify-content:center;gap:4px;margin-bottom:20px; }
-.footer .waves i{display:block;width:3px;background:var(--gold);border-radius:2px;animation:wv 1.2s ease-in-out infinite;}
-.footer .waves i:nth-child(1){height:10px;animation-delay:0s} .footer .waves i:nth-child(2){height:18px;animation-delay:.1s}
-.footer .waves i:nth-child(3){height:14px;animation-delay:.2s} .footer .waves i:nth-child(4){height:22px;animation-delay:.3s}
-.footer .waves i:nth-child(5){height:14px;animation-delay:.4s} .footer .waves i:nth-child(6){height:10px;animation-delay:.5s}
+.footer{text-align:center;padding:40px 24px 60px;position:relative;z-index:1}
+.footer .waves{display:flex;justify-content:center;gap:4px;margin-bottom:20px}
+.footer .waves i{display:block;width:3px;background:var(--gold);border-radius:2px;animation:wv 1.2s ease-in-out infinite}
+.footer .waves i:nth-child(1){height:10px;animation-delay:0s}.footer .waves i:nth-child(2){height:18px;animation-delay:.1s}
+.footer .waves i:nth-child(3){height:14px;animation-delay:.2s}.footer .waves i:nth-child(4){height:22px;animation-delay:.3s}
+.footer .waves i:nth-child(5){height:14px;animation-delay:.4s}.footer .waves i:nth-child(6){height:10px;animation-delay:.5s}
 @keyframes wv{0%,100%{transform:scaleY(1);opacity:.4}50%{transform:scaleY(.3);opacity:1}}
-.footer p { font-size:13px;color:var(--ink-muted);letter-spacing:2px;line-height:2; }
+.footer p{font-size:13px;color:var(--ink-muted);letter-spacing:2px;line-height:2}
 
-/* ========== Responsive ========== */
-@media(max-width:768px){
-  .hero{padding:48px 0 36px}.hero h1{font-size:34px}
-  .gallery{grid-template-columns:1fr;gap:18px}
-  .card-illus{height:140px}.card-body{padding:18px 20px 0}
-}
-
+@media(max-width:768px){.hero{padding:48px 0 36px}.hero h1{font-size:34px}.gallery{grid-template-columns:1fr;gap:18px}.card-illus{height:160px}.card-body{padding:18px 20px}}
 </style>
 </head>
 <body>
-
-<div class="clouds">
-  <div class="cloud">☁️</div><div class="cloud">☁️</div><div class="cloud">☁️</div><div class="cloud">☁️</div><div class="cloud">☁️</div>
-</div>
-
+<div class="clouds"><div class="cloud">☁️</div><div class="cloud">☁️</div><div class="cloud">☁️</div><div class="cloud">☁️</div></div>
 <div class="container">
-  <div class="hero">
-    <h1>森哥的古诗绘本馆</h1>
-    <p class="subtitle">为奥莉和茉莉 · 挑选最美的诗</p>
-    <div class="deco"><span></span><div class="dia"></div><span></span></div>
-  </div>
-
-  <div class="sect-head">绘本目录</div>
-  <div class="gallery" id="gallery"></div>
-  <div class="footer">
-    <div class="waves"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <p>打开绘本 · 听见诗的声音</p>
-  </div>
+<div class="hero"><h1>森哥的古诗绘本馆</h1><p class="subtitle">为奥莉和茉莉 · 挑选最美的诗</p><div class="deco"><span></span><div class="dia"></div><span></span></div></div>
+<div class="sect-head">绘本目录</div>
+<div class="gallery" id="gallery"></div>
+<div class="footer"><div class="waves"><i></i><i></i><i></i><i></i><i></i><i></i></div><p>打开绘本 · 听见诗的声音</p></div>
 </div>
-
 <script>
-// CSS illustration templates by tag
-const ILLUS = {
-  mountain: `<div class="card-illus illus-mountain"><div class="peak-l"></div><div class="peak-c"></div><div class="peak-r"></div><div class="mist"></div><div class="boat">⛵</div></div>`,
-  moon: `<div class="card-illus illus-moon"><div class="moon"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="house"></div><div class="tree"></div></div>`,
-  flower: `<div class="card-illus illus-flower"><div class="branch"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>`,
-  bamboo: `<div class="card-illus illus-bamboo"><div class="bam"></div><div class="bam"></div><div class="bam"></div><div class="bam"></div><div class="b-leaf"></div><div class="b-leaf"></div></div>`,
-  default: `<div class="card-illus illus-default"><div class="sun"></div><div class="bird">⛅</div></div>`
+var I = {
+  // 山水 — 层峦叠嶂 + 江水 + 小舟
+  mountain: '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dce8f0"/><stop offset="100%" stop-color="#e8ddd0"/></linearGradient></defs><rect width="400" height="200" fill="url(#sky)"/><path d="M0 200 L0 100 L60 70 L120 110 L180 50 L240 90 L300 60 L360 100 L400 80 L400 200Z" fill="#7a9a7a" opacity=".35"/><path d="M-20 200 L20 120 L80 80 L140 130 L200 60 L260 100 L320 70 L380 110 L420 95 L420 200Z" fill="#6a8a6a" opacity=".4"/><path d="M10 200 L50 140 L100 110 L160 150 L220 90 L280 130 L340 100 L400 135 L400 200Z" fill="#8aaa8a" opacity=".5"/><rect x="0" y="160" width="400" height="40" fill="rgba(220,230,240,.5)"/><ellipse cx="310" cy="170" rx="12" ry="4" fill="#5a6a5a" opacity=".5"/><line x1="308" y1="170" x2="308" y2="155" stroke="#5a6a5a" stroke-width="1.5" opacity=".6"/><path d="M300 155 L316 155 L308 145Z" fill="#5a6a5a" opacity=".6"/><path d="M60 30 Q80 22 100 30" stroke="#5a5a4a" stroke-width="1" fill="none" opacity=".4"/><path d="M200 20 Q215 14 230 20" stroke="#5a5a4a" stroke-width="1" fill="none" opacity=".3"/><circle cx="350" cy="30" r="20" fill="#ffe8a0" opacity=".5"/></svg>',
+
+  // 明月 — 圆月 + 星空 + 茅屋 + 树影
+  moon: '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="moo"><stop offset="0%" stop-color="#ffe8c0"/><stop offset="100%" stop-color="#e0b060"/></radialGradient></defs><rect width="400" height="200" fill="#1a2a4a"/><rect width="400" height="200" fill="url(#moo)" opacity=".05"/><circle cx="300" cy="45" r="45" fill="url(#moo)" opacity=".9"/><circle cx="295" cy="40" r="5" fill="#f0d0a0" opacity=".3"/><circle cx="310" cy="50" r="3" fill="#f0d0a0" opacity=".2"/><circle cx="50" cy="20" r="1.5" fill="#fff" opacity=".6"/><circle cx="120" cy="35" r="1" fill="#fff" opacity=".4"/><circle cx="180" cy="15" r="2" fill="#fff" opacity=".5"/><circle cx="80" cy="50" r="1" fill="#fff" opacity=".3"/><circle cx="200" cy="40" r="1.5" fill="#fff" opacity=".4"/><rect x="50" y="155" width="45" height="45" fill="#3a3028" rx="2" opacity=".8"/><polygon points="50,155 72.5,130 95,155" fill="#4a3a2a" opacity=".8"/><rect x="75" y="170" width="12" height="30" fill="#4a3a2a" rx="1" opacity=".6"/><rect x="280" y="160" width="6" height="40" fill="#2a1a0a" rx="3" opacity=".5"/><circle cx="283" cy="150" r="15" fill="#2a1a0a" opacity=".4"/><rect x="340" y="150" width="5" height="50" fill="#2a1a0a" rx="2" opacity=".5"/><circle cx="342" cy="140" r="18" fill="#2a1a0a" opacity=".4"/><path d="M0 190 Q100 170 200 185 Q300 175 400 190 L400 200 L0 200Z" fill="#1a2a3a" opacity=".5"/></svg>',
+
+  // 登高 — 楼阁 + 群山 + 夕阳
+  tower: '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c8a0"/><stop offset="40%" stop-color="#e8b888"/><stop offset="100%" stop-color="#d8a870"/></linearGradient></defs><rect width="400" height="200" fill="url(#sunset)"/><circle cx="320" cy="60" r="35" fill="#ffe0a0" opacity=".7"/><path d="M0 200 L0 130 L50 110 L100 140 L150 90 L200 120 L250 80 L300 105 L350 85 L400 110 L400 200Z" fill="#8a7a6a" opacity=".25"/><path d="M30 200 L60 150 L100 140 L140 165 L200 115 L260 145 L320 130 L380 155 L420 140 L420 200Z" fill="#7a6a5a" opacity=".35"/><rect x="170" y="95" width="70" height="50" fill="#6a5040" rx="1" opacity=".8"/><rect x="175" y="100" width="60" height="20" fill="#6a5040" opacity=".9"/><rect x="182" y="80" width="46" height="20" fill="#6a5040" rx="1"/><polygon points="170,80 180,65 190,80" fill="#6a5040"/><polygon points="220,80 230,65 240,80" fill="#6a5040"/><rect x="195" y="72" width="4" height="8" fill="#5a3a2a"/><rect x="185" y="95" width="8" height="6" fill="#5a3a2a" opacity=".6"/><rect x="210" y="95" width="8" height="6" fill="#5a3a2a" opacity=".6"/><rect x="185" y="108" width="8" height="6" fill="#5a3a2a" opacity=".6"/><rect x="210" y="108" width="8" height="6" fill="#5a3a2a" opacity=".6"/><path d="M260 50 Q280 42 300 50" stroke="#5a4a3a" stroke-width="1.5" fill="none" opacity=".5"/><path d="M280 42 L290 30 L300 42" fill="none" stroke="#5a4a3a" stroke-width="1" opacity=".5"/></svg>',
+
+  // 花鸟
+  flower: '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#f8e8e0"/><path d="M180 200 L180 80" stroke="#6a4a3a" stroke-width="5" stroke-linecap="round" opacity=".6"/><path d="M180 130 Q150 110 130 120" stroke="#6a4a3a" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/><path d="M180 150 Q210 130 240 125" stroke="#6a4a3a" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/><circle cx="130" cy="115" r="10" fill="#ff8090" opacity=".8"/><circle cx="130" cy="108" r="8" fill="#ff90a0" opacity=".7"/><circle cx="125" cy="120" r="8" fill="#ffa0b0" opacity=".7"/><circle cx="135" cy="120" r="8" fill="#ff8090" opacity=".7"/><circle cx="130" cy="110" r="5" fill="#ffd0a0" opacity=".9"/><circle cx="240" cy="120" r="9" fill="#ff90a0" opacity=".8"/><circle cx="240" cy="113" r="7" fill="#ffa0b0" opacity=".7"/><circle cx="234" cy="125" r="7" fill="#ff8090" opacity=".7"/><circle cx="246" cy="125" r="7" fill="#ffa0b0" opacity=".7"/><circle cx="240" cy="118" r="4" fill="#ffd0a0" opacity=".9"/><circle cx="100" cy="125" r="5" fill="#ffb0c0" opacity=".5"/><circle cx="150" cy="105" r="4" fill="#ffc0d0" opacity=".4"/><ellipse cx="350" cy="60" rx="20" ry="12" fill="#a0c0d0" opacity=".3"/><path d="M330 60 Q350 35 355 30 Q360 35 370 60" fill="#a0c0d0" opacity=".2"/></svg>',
+
+  // 竹石
+  bamboo: '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#dce8d8"/><ellipse cx="300" cy="180" rx="60" ry="15" fill="#a0a890" opacity=".4"/><ellipse cx="320" cy="175" rx="40" ry="10" fill="#b0b8a0" opacity=".3"/><rect x="80" y="40" width="6" height="160" fill="#5a8a4a" rx="3" opacity=".7"/><rect x="80" y="40" width="6" height="160" fill="rgba(255,255,255,.1)" rx="3" opacity=".5"/><rect x="80" y="40" width="6" height="40" fill="#5a8a4a" rx="3"/><rect x="140" y="30" width="6" height="170" fill="#4a7a3a" rx="3" opacity=".7"/><rect x="200" y="45" width="5" height="155" fill="#6a9a5a" rx="2.5" opacity=".6"/><rect x="260" y="35" width="6" height="165" fill="#4a7a3a" rx="3" opacity=".65"/><path d="M80 60 Q110 50 130 55" stroke="#5a8a4a" stroke-width="2" fill="none" opacity=".6"/><path d="M80 90 Q120 80 140 85" stroke="#5a8a4a" stroke-width="2" fill="none" opacity=".5"/><path d="M140 55 Q170 45 190 50" stroke="#4a7a3a" stroke-width="2" fill="none" opacity=".5"/><path d="M260 50 Q290 42 310 48" stroke="#4a7a3a" stroke-width="2" fill="none" opacity=".5"/><path d="M200 65 Q220 55 240 60" stroke="#6a9a5a" stroke-width="2" fill="none" opacity=".5"/><path d="M50 180 Q70 160 90 170 Q110 180 120 165" stroke="#8a9a7a" stroke-width="1.5" fill="none" opacity=".3"/></svg>',
+
+  // 默认
+  default: '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="defsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0dcc8"/><stop offset="100%" stop-color="#d8d4c0"/></linearGradient></defs><rect width="400" height="200" fill="url(#defsky)"/><circle cx="320" cy="45" r="30" fill="#ffe8a0" opacity=".6"/><path d="M0 200 L0 140 L80 120 L160 150 L240 110 L320 140 L400 120 L400 200Z" fill="#a0a890" opacity=".25"/><path d="M20 200 L60 160 L120 145 L180 170 L260 130 L340 160 L400 145 L400 200Z" fill="#90a080" opacity=".3"/><path d="M280 30 Q300 22 320 30" stroke="#5a5a4a" stroke-width="1.5" fill="none" opacity=".4"/></svg>'
 };
 
-function pickIllus(tags) {
-  const t = tags.join(' ');
-  if (/山|水|江|河|天门|庐山|瀑布/.test(t)) return ILLUS.mountain;
-  if (/月|思乡|夜|故/.test(t)) return ILLUS.moon;
-  if (/花|春|梅|桃|柳/.test(t)) return ILLUS.flower;
-  if (/竹|松|品格|石/.test(t)) return ILLUS.bamboo;
-  return ILLUS.default;
+function pickIllus(tags){
+  var t=tags.join(' ');
+  if(/登高|楼|志|千里|更上/.test(t)) return I.tower;
+  if(/月|思乡|夜|故/.test(t)) return I.moon;
+  if(/山|水|江|河|天门|庐山|瀑布/.test(t)) return I.mountain;
+  if(/花|春|梅|桃|柳|鸟/.test(t)) return I.flower;
+  if(/竹|松|品格|石/.test(t)) return I.bamboo;
+  return I.default;
 }
 
-
-fetch('poems.json?' + Date.now())
-  .then(r => r.json())
-  .then(poems => {
-    const gallery = document.getElementById('gallery');
-    poems.forEach(poem => {
-      const card = document.createElement('a');
-      card.className = 'card';
-      card.href = poem.file;
-      card.target = '_blank';
-      card.innerHTML =
-        pickIllus(poem.tags) +
-        '<div class="card-body">' +
-          '<div class="card-title">' + poem.title + '</div>' +
-          '<div class="card-author">' + poem.author + '</div>' +
-          '<div class="card-excerpt">' + poem.summary + '</div>' +
-          '<div class="card-tags">' + poem.tags.map(t => '<span class="card-tag">#' + t + '</span>').join('') + '</div>' +
-        '</div>';
-      gallery.appendChild(card);
-    });
-  })
-  .catch(() => {
-    document.getElementById('gallery').innerHTML =
-      '<div style="grid-column:1/-1;text-align:center;color:var(--ink-muted);padding:40px;">📜 古诗正在赶来…</div>';
+fetch('poems.json?'+Date.now())
+.then(function(r){return r.json()})
+.then(function(poems){
+  var g=document.getElementById('gallery');
+  poems.forEach(function(p){
+    var a=document.createElement('a');a.className='card';a.href=p.file;a.target='_blank';
+    a.innerHTML='<div class="card-illus">'+pickIllus(p.tags)+'</div>'+
+      '<div class="card-body">'+
+        '<div class="card-title">'+p.title+'</div>'+
+        '<div class="card-author">'+p.author+'</div>'+
+        '<div class="card-excerpt">'+p.summary+'</div>'+
+        '<div class="card-tags">'+p.tags.map(function(t){return'<span class="card-tag">#'+t+'</span>'}).join('')+'</div>'+
+      '</div>';
+    g.appendChild(a);
   });
+})
+.catch(function(){document.getElementById('gallery').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--ink-muted);padding:40px">📜 古诗正在赶来…</div>'});
 </script>
 </body>
 </html>
