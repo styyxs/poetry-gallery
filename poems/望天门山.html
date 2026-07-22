@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>望天门山 · 儿童绘本</title>
@@ -207,7 +209,7 @@ html, body {
   
     <section class="poem-card">
       <div class="poem-illustration">
-        <img src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_1.jpeg" alt="第 1 句插画" loading="lazy">
+        <img loading="eager" fetchpriority="high" decoding="sync" src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_1.jpeg" alt="第 1 句插画" loading="lazy">
         <span class="line-badge">第 1 句</span>
       </div>
       <div class="poem-text">
@@ -217,7 +219,7 @@ html, body {
           <span class="play-icon">🔊</span>
           <span class="play-text">点我听讲解</span>
         </button>
-        <audio id="audio1" preload="auto">
+        <audio preload="none" id="audio1" preload="none">
           <source src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/bg_audio_1.mp3" type="audio/mpeg">
         </audio>
       </div>
@@ -225,7 +227,7 @@ html, body {
         
     <section class="poem-card">
       <div class="poem-illustration">
-        <img src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_2.jpeg" alt="第 2 句插画" loading="lazy">
+        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_2.jpeg" alt="第 2 句插画" loading="lazy">
         <span class="line-badge">第 2 句</span>
       </div>
       <div class="poem-text">
@@ -235,7 +237,7 @@ html, body {
           <span class="play-icon">🔊</span>
           <span class="play-text">点我听讲解</span>
         </button>
-        <audio id="audio2" preload="auto">
+        <audio preload="none" id="audio2" preload="none">
           <source src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/bg_audio_2.mp3" type="audio/mpeg">
         </audio>
       </div>
@@ -243,7 +245,7 @@ html, body {
         
     <section class="poem-card">
       <div class="poem-illustration">
-        <img src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_3.jpeg" alt="第 3 句插画" loading="lazy">
+        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_3.jpeg" alt="第 3 句插画" loading="lazy">
         <span class="line-badge">第 3 句</span>
       </div>
       <div class="poem-text">
@@ -253,7 +255,7 @@ html, body {
           <span class="play-icon">🔊</span>
           <span class="play-text">点我听讲解</span>
         </button>
-        <audio id="audio3" preload="auto">
+        <audio preload="none" id="audio3" preload="none">
           <source src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/bg_audio_3.mp3" type="audio/mpeg">
         </audio>
       </div>
@@ -261,7 +263,7 @@ html, body {
         
     <section class="poem-card">
       <div class="poem-illustration">
-        <img src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_4.jpeg" alt="第 4 句插画" loading="lazy">
+        <img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/img_4.jpeg" alt="第 4 句插画" loading="lazy">
         <span class="line-badge">第 4 句</span>
       </div>
       <div class="poem-text">
@@ -271,7 +273,7 @@ html, body {
           <span class="play-icon">🔊</span>
           <span class="play-text">点我听讲解</span>
         </button>
-        <audio id="audio4" preload="auto">
+        <audio preload="none" id="audio4" preload="none">
           <source src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/bg_audio_4.mp3" type="audio/mpeg">
         </audio>
       </div>
@@ -299,7 +301,7 @@ html, body {
 他立刻拿出笔，把这一刻的画面写成了一首诗，就是小朋友刚才读的这首《望天门山》。
 
 一千多年过去了，今天小朋友坐船经过这里，还是会被这片山水美到呢。</p>
-    <audio id="audioStory" preload="auto">
+    <audio preload="none" id="audioStory" preload="none">
       <source src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/bg_audio_5.mp3" type="audio/mpeg">
     </audio>
   </section>
@@ -346,7 +348,7 @@ html, body {
       <span class="play-icon">📖</span>
       <span class="play-text">完整朗读一遍</span>
     </button>
-    <audio id="audioFull" preload="auto">
+    <audio preload="none" id="audioFull" preload="none">
       <source src="https://cdn.jsdelivr.net/gh/styyxs/poetry-gallery@main/poems/望天门山_img/bg_audio_6.mp3" type="audio/mpeg">
     </audio>
   </section>
