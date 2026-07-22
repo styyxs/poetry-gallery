@@ -3,212 +3,292 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📖 森哥的古诗绘本馆</title>
+<title>森哥的古诗绘本馆</title>
+<!-- Inter font (Plain Black substitute at weight 500 + neg letter-spacing) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* === Clay Design System Tokens === */
+:root {
+  --canvas: #fffaf0;
+  --surface-soft: #faf5e8;
+  --surface-card: #f5f0e0;
+  --surface-strong: #ebe6d6;
+  --ink: #0a0a0a;
+  --body: #3a3a3a;
+  --body-strong: #1a1a1a;
+  --muted: #6a6a6a;
+  --muted-soft: #9a9a9a;
+  --hairline: #e5e5e5;
+  --hairline-soft: #f0f0f0;
+  --brand-pink: #ff4d8b;
+  --brand-teal: #1a3a3a;
+  --brand-lavender: #b8a4ed;
+  --brand-peach: #ffb084;
+  --brand-ochre: #e8b94a;
+  --brand-mint: #a4d4c5;
+  --brand-coral: #ff6b5a;
+  --on-primary: #ffffff;
+  --on-dark: #ffffff;
+  --on-light: #0a0a0a;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-section: 80px;
+  --max-width: 1280px;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 30%, #d4e8d4 70%, #c8dce8 100%);
-  min-height: 100vh;
-  color: #3e2723;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--canvas);
+  color: var(--body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ===== 顶部 ===== */
+/* === Hero === */
 .hero {
+  padding: var(--space-section) var(--space-lg) var(--space-xxl);
   text-align: center;
-  padding: 60px 30px 40px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(ellipse at 30% 40%, rgba(255,183,77,0.15) 0%, transparent 60%),
-              radial-gradient(ellipse at 70% 60%, rgba(129,212,250,0.15) 0%, transparent 60%);
-  animation: float 15s ease-in-out infinite;
-}
-@keyframes float {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(20px, -15px); }
-  66% { transform: translate(-15px, 10px); }
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 .hero h1 {
-  font-size: 48px;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
 }
-.hero .subtitle {
+.hero .lead {
   font-size: 18px;
-  color: #8d6e63;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 16px;
+  font-weight: 400;
+  color: var(--muted);
+  max-width: 540px;
+  margin: 0 auto var(--space-lg);
+  line-height: 1.55;
 }
-.hero .poem-count {
-  display: inline-block;
-  background: #fff;
-  padding: 8px 24px;
-  border-radius: 20px;
-  font-size: 15px;
-  color: #6d4c41;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  position: relative;
-  z-index: 1;
+.hero .count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-card);
+  color: var(--muted);
+  padding: 6px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
 }
 
-/* ===== 画廊 ===== */
+/* === Gallery Grid === */
 .gallery {
-  max-width: 1000px;
-  margin: 0 auto 60px;
-  padding: 0 20px;
+  max-width: var(--max-width);
+  margin: 0 auto var(--space-section);
+  padding: 0 var(--space-lg);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
 }
 
-/* ===== 卡片 ===== */
+/* === Poem Cards (Clay feature-card style) === */
 .card {
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+  display: block;
   text-decoration: none;
   color: inherit;
-  display: block;
-  position: relative;
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 36px rgba(0,0,0,0.15);
-}
-.card-image {
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  transition: transform 0.2s ease;
   position: relative;
   overflow: hidden;
-}
-.card-image::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(transparent, white);
-}
-
-/* 为每张卡配不同背景色 */
-.card:nth-child(5n+1) .card-image { background: linear-gradient(135deg, #b8e0ff, #d4f0ff); }
-.card:nth-child(5n+2) .card-image { background: linear-gradient(135deg, #ffd6e8, #ffe0f0); }
-.card:nth-child(5n+3) .card-image { background: linear-gradient(135deg, #fff3a0, #fff8d0); }
-.card:nth-child(5n+4) .card-image { background: linear-gradient(135deg, #c8f0d0, #d8f8e0); }
-.card:nth-child(5n+5) .card-image { background: linear-gradient(135deg, #e0d0ff, #ece0ff); }
-
-.card-body {
-  padding: 20px 24px 24px;
-}
-.card-body h2 {
-  font-size: 24px;
-  margin-bottom: 4px;
-}
-.card-body .author {
-  font-size: 14px;
-  color: #8d6e63;
-  margin-bottom: 12px;
-}
-.card-body .summary {
-  font-size: 15px;
-  color: #5d4037;
-  line-height: 1.7;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-.card-body .tags {
+  min-height: 280px;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
-.tag {
-  background: #f5f0eb;
-  color: #8d6e63;
-  padding: 4px 12px;
-  border-radius: 12px;
+.card:hover { transform: translateY(-4px); }
+
+/* 6-color rotation — anchors Clay's saturated feature-card rhythm */
+.card:nth-child(6n+1) { background: var(--brand-pink); color: var(--on-primary); }
+.card:nth-child(6n+2) { background: var(--brand-teal); color: var(--on-dark); }
+.card:nth-child(6n+3) { background: var(--brand-lavender); color: var(--on-light); }
+.card:nth-child(6n+4) { background: var(--brand-peach); color: var(--on-light); }
+.card:nth-child(6n+5) { background: var(--brand-ochre); color: var(--on-light); }
+.card:nth-child(6n+0) { background: var(--surface-card); color: var(--on-light); border: 1px solid var(--hairline); }
+
+.card-illustration {
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: var(--space-md);
+  opacity: 0.9;
+}
+.card-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+  margin-bottom: var(--space-xs);
+}
+.card-author {
   font-size: 13px;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-bottom: var(--space-sm);
+}
+.card-excerpt {
+  font-size: 14px;
+  line-height: 1.65;
+  opacity: 0.85;
+  margin-bottom: var(--space-md);
+  flex: 1;
 }
 
-/* ===== 页脚 ===== */
-.footer {
+/* Tags — cream pill badges on colored cards */
+.card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.card-tag {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(4px);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Light-card tag variant */
+.card:nth-child(6n+3) .card-tag,
+.card:nth-child(6n+4) .card-tag,
+.card:nth-child(6n+5) .card-tag,
+.card:nth-child(6n+0) .card-tag {
+  background: rgba(0,0,0,0.06);
+}
+
+/* === Empty State === */
+.empty-state {
+  grid-column: 1 / -1;
   text-align: center;
-  padding: 40px 20px;
-  color: #8d6e63;
+  padding: var(--space-xxl);
+  color: var(--muted-soft);
   font-size: 14px;
 }
 
-@media (max-width: 640px) {
-  .hero h1 { font-size: 34px; }
-  .gallery { grid-template-columns: 1fr; padding: 0 16px; }
-  .card-image { height: 160px; font-size: 52px; }
+/* === Footer (Clay: cream footer, NOT dark) === */
+.footer {
+  background: var(--surface-soft);
+  padding: var(--space-section) var(--space-lg);
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.footer .divider {
+  display: inline-block;
+  width: 40px;
+  height: 2px;
+  background: var(--hairline);
+  margin-bottom: var(--space-lg);
+  border-radius: 1px;
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero h1 {
+    font-size: 44px;
+    letter-spacing: -1.5px;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--space-xxl) var(--space-md) var(--space-xl);
+  }
+  .hero h1 {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+  .gallery {
+    grid-template-columns: 1fr;
+    padding: 0 var(--space-md);
+  }
+  .card {
+    padding: var(--space-lg);
+    min-height: 220px;
+  }
+  .card-illustration { font-size: 42px; }
 }
 </style>
 </head>
 <body>
 
+<!-- Hero -->
 <div class="hero">
   <h1>森哥的古诗绘本馆</h1>
-  <div class="subtitle">为奥莉和茉莉挑选最美的诗</div>
-  <div class="poem-count" id="count">共 0 首诗</div>
+  <p class="lead">为奥莉和茉莉挑选最美的诗。每一首都是一幅画，点击卡片进入绘本世界。</p>
+  <div class="count-badge" id="count">—</div>
 </div>
 
+<!-- Gallery -->
 <div class="gallery" id="gallery"></div>
 
-<div class="footer">🖌️ 每一首诗，都是一幅画。点击卡片，进入绘本世界。</div>
+<!-- Footer -->
+<div class="footer">
+  <div class="divider"></div>
+  <p>每一首诗，都是一幅画。<br>打开绘本，听见诗的声音。</p>
+</div>
 
 <script>
-// 从 poems.json 动态加载古诗列表
+// Load poems from manifest
 fetch('poems.json?' + Date.now())
   .then(r => r.json())
   .then(poems => {
     document.getElementById('count').textContent = '共 ' + poems.length + ' 首诗';
+
     const gallery = document.getElementById('gallery');
-    const emojis = ['🌙','🌄','🏔️','🌸','❄️','🎋','🌾','🦅','🐟','🍂','🏮','🎏'];
+    const emojis = ['🌙','🌄','🏔️','🌸','❄️','🎋','🏮','🦅','🐟','🍂','🌊','🕊️','🐉','🎏','🌿','🪷'];
 
     poems.forEach((poem, i) => {
       const card = document.createElement('a');
       card.className = 'card';
       card.href = poem.file;
       card.target = '_blank';
+      card.title = poem.title + ' — ' + poem.author;
 
-      card.innerHTML = `
-        <div class="card-image">${emojis[i % emojis.length]}</div>
-        <div class="card-body">
-          <h2>${poem.title}</h2>
-          <div class="author">${poem.author}</div>
-          <div class="summary">${poem.summary}</div>
-          <div class="tags">${poem.tags.map(t => '<span class="tag">' + t + '</span>').join('')}</div>
-        </div>
-      `;
+      card.innerHTML =
+        '<div class="card-illustration">' + (emojis[i % emojis.length]) + '</div>' +
+        '<div class="card-title">' + poem.title + '</div>' +
+        '<div class="card-author">' + poem.author + '</div>' +
+        '<div class="card-excerpt">' + poem.summary + '</div>' +
+        '<div class="card-tags">' +
+          poem.tags.map(t => '<span class="card-tag">' + t + '</span>').join('') +
+        '</div>';
 
       gallery.appendChild(card);
     });
   })
-  .catch(err => {
+  .catch(() => {
     document.getElementById('gallery').innerHTML =
-      '<p style="text-align:center;grid-column:1/-1;color:#8d6e63;">古诗加载中...</p>';
-    console.error('加载失败:', err);
+      '<div class="empty-state">古诗正在赶来…</div>';
   });
 </script>
 
