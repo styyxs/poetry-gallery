@@ -406,5 +406,33 @@ html, body {
   }
 })();
 </script>
+
+<script>
+// 图片加载完成后，自动预加载所有音频，用户点播放时秒播
+(function() {
+  var imgs = document.querySelectorAll('img[loading="lazy"]');
+  if (imgs.length === 0) { imgs = document.querySelectorAll('img'); }
+  var loaded = 0;
+  var audios = document.querySelectorAll('audio');
+  
+  function preloadAudios() {
+    audios.forEach(function(a) { a.preload = 'auto'; });
+  }
+  
+  // 第一张图加载完就开始预加载音频
+  imgs.forEach(function(img) {
+    if (img.complete) {
+      loaded++;
+      if (loaded === 1) preloadAudios();
+    } else {
+      img.addEventListener('load', function() {
+        loaded++;
+        if (loaded === 1) preloadAudios();
+      }, { once: true });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
