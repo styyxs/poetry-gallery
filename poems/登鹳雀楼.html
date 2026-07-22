@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登鹳雀楼 · 儿童绘本</title>
+<style>
+:root {
+  --bg-1: #b8e0ff;
+  --bg-2: #ffd6e8;
+  --bg-3: #fff3a0;
+  --card-bg: #ffffff;
+  --card-shadow: 0 10px 30px rgba(255, 158, 181, 0.25);
+  --ink-primary: #1e4d6b;
+  --ink-secondary: #4a7892;
+  --ink-soft: #8fb5c9;
+  --accent-pink: #ff6b9d;
+  --accent-cream: #ffd966;
+  --accent-mint: #6bdbb8;
+  --accent-yellow: #ffe066;
+  --accent-purple: #c8a8ff;
+  --accent-blue: #6bb6ff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffe066 0%, #ff9eb5 50%, #c8a8ff 100%);
+  background-attachment: fixed;
+  color: var(--ink-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 1px;
+}
+.page-wrapper { max-width: 480px; margin: 0 auto; padding: 28px 16px 56px; }
+
+.header-card {
+  background: var(--card-bg); border-radius: 32px; padding: 36px 24px 32px;
+  text-align: center; box-shadow: var(--card-shadow); margin-bottom: 28px;
+  position: relative; overflow: hidden;
+}
+.header-card::before { content: "🌙"; position: absolute; top: 14px; right: 22px; font-size: 32px; opacity: 0.8; }
+.header-card::after { content: "⭐"; position: absolute; top: 38px; left: 26px; font-size: 18px; opacity: 0.6; }
+.header-card .badge {
+  display: inline-block; background: var(--accent-pink); color: #fff;
+  font-size: 14px; font-weight: 800; padding: 8px 22px; border-radius: 999px;
+  margin-bottom: 18px; letter-spacing: 3px;
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.4);
+}
+.header-card h1 {
+  font-size: 52px; font-weight: 900; color: var(--accent-pink); margin-bottom: 14px;
+  letter-spacing: 12px;
+  text-shadow: 3px 3px 0 var(--accent-yellow), 6px 6px 0 var(--accent-mint);
+  transform: rotate(-2deg); display: inline-block;
+}
+.header-card .author {
+  font-size: 20px; font-weight: 800; color: var(--ink-primary); margin-bottom: 4px;
+  background: var(--accent-cream); display: inline-block;
+  padding: 4px 18px; border-radius: 999px;
+}
+.header-card .dynasty { font-size: 13px; font-weight: 600; color: var(--ink-soft); letter-spacing: 1px; }
+
+.poem-card {
+  background: var(--card-bg); border-radius: 28px; padding: 14px 14px 22px;
+  margin-bottom: 22px; box-shadow: var(--card-shadow);
+}
+.poem-illustration {
+  position: relative; width: 100%; aspect-ratio: 4/3;
+  border-radius: 20px; overflow: hidden;
+  background: linear-gradient(135deg, #f0f8ff, #fce7f3); margin-bottom: 16px;
+}
+.poem-illustration img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.line-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(255, 255, 255, 0.92); color: var(--ink-primary);
+  font-size: 13px; font-weight: 700; padding: 5px 14px; border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08); letter-spacing: 1px;
+}
+.poem-text { padding: 0 8px; text-align: center; }
+.line-original {
+  font-size: 32px; font-weight: 900; color: var(--accent-pink);
+  margin-bottom: 10px; letter-spacing: 6px;
+  text-shadow: 2px 2px 0 var(--accent-yellow); display: inline-block;
+}
+.line-translation {
+  font-size: 17px; font-weight: 600; color: var(--ink-secondary);
+  line-height: 1.7; margin-bottom: 16px;
+}
+
+.play-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: #fff; font-size: 15px; font-weight: 800;
+  padding: 10px 22px; border: none; border-radius: 999px; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(107, 182, 255, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s; letter-spacing: 1px;
+}
+.play-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(107, 182, 255, 0.5); }
+.play-btn:active { transform: translateY(0); }
+.play-btn.playing {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-yellow));
+  animation: pulse 1s infinite;
+}
+.play-btn .play-icon { font-size: 18px; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+.story-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fff8f3 100%);
+  border-radius: 28px; padding: 28px 24px; margin-bottom: 24px;
+  box-shadow: var(--card-shadow); position: relative;
+}
+.story-card::before {
+  content: "📖"; position: absolute; top: -14px; left: 24px;
+  font-size: 28px; background: var(--card-bg); padding: 0 6px; border-radius: 50%;
+}
+.story-card .story-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
+}
+.story-card h2 {
+  font-size: 24px; font-weight: 900; color: var(--accent-pink);
+  letter-spacing: 3px; text-shadow: 2px 2px 0 var(--accent-yellow);
+}
+.story-card p {
+  font-size: 16px; font-weight: 600; color: var(--ink-secondary);
+  white-space: pre-line; line-height: 2; text-indent: 2em;
+}
+
+.facts-section h2 {
+  font-size: 24px; font-weight: 900; color: var(--accent-pink);
+  margin-bottom: 18px; text-align: center; letter-spacing: 3px;
+  text-shadow: 2px 2px 0 var(--accent-yellow);
+}
+.fact-card {
+  background: var(--card-bg); border-radius: 24px; padding: 20px 22px;
+  margin-bottom: 14px; box-shadow: var(--card-shadow);
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.fact-emoji {
+  flex-shrink: 0; font-size: 36px; width: 60px; height: 60px;
+  background: var(--accent-yellow); border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 158, 181, 0.3);
+}
+.fact-card:nth-child(2) .fact-emoji { background: var(--accent-mint); }
+.fact-card:nth-child(3) .fact-emoji { background: var(--accent-pink); }
+.fact-card:nth-child(4) .fact-emoji { background: var(--accent-purple); }
+.fact-text { flex: 1; min-width: 0; }
+.fact-title { font-size: 18px; font-weight: 800; color: var(--ink-primary); margin-bottom: 6px; letter-spacing: 1px; }
+.fact-body { font-size: 14px; font-weight: 500; color: var(--ink-secondary); line-height: 1.7; }
+
+.full-poem-card {
+  background: linear-gradient(135deg, #fff8f3 0%, #fce7f3 100%);
+  border-radius: 28px; padding: 32px 24px; margin-bottom: 24px;
+  box-shadow: var(--card-shadow); text-align: center; position: relative;
+}
+.full-poem-card::before {
+  content: "🌟"; position: absolute; top: -16px; left: 50%;
+  transform: translateX(-50%); font-size: 32px;
+  background: var(--card-bg); padding: 0 8px; border-radius: 50%;
+}
+.full-poem-card h2 {
+  font-size: 24px; font-weight: 900; color: var(--accent-pink);
+  margin-bottom: 16px; letter-spacing: 4px;
+  text-shadow: 2px 2px 0 var(--accent-yellow);
+}
+.full-poem-meta {
+  font-size: 16px; font-weight: 700; color: var(--ink-secondary);
+  margin-bottom: 24px; letter-spacing: 2px;
+  background: var(--accent-cream); display: inline-block;
+  padding: 6px 18px; border-radius: 999px;
+}
+.full-poem-text {
+  font-size: 28px; font-weight: 800; color: var(--ink-primary);
+  line-height: 2.2; letter-spacing: 6px; margin-bottom: 24px;
+}
+.full-poem-text .line { display: block; padding: 6px 0; }
+.play-btn-big {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-yellow));
+  color: #fff; font-size: 18px; font-weight: 900;
+  padding: 14px 32px; border: none; border-radius: 999px; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 107, 157, 0.5); letter-spacing: 2px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.play-btn-big:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(255, 107, 157, 0.6); }
+.play-btn-big .play-icon { font-size: 22px; }
+
+.footer { text-align: center; margin-top: 36px; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+.footer .badge-local {
+  display: inline-block; background: rgba(255, 255, 255, 0.7);
+  padding: 6px 16px; border-radius: 999px;
+  border: 1.5px dashed var(--accent-pink); margin-top: 10px; color: var(--ink-secondary);
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <header class="header-card">
+    <span class="badge">📖 儿童绘本</span>
+    <h1>登鹳雀楼</h1>
+    <div class="author">王之涣</div>
+    <div class="dynasty">唐</div>
+  </header>
+
+  
+    <section class="poem-card">
+      <div class="poem-illustration">
+        <img loading="eager" fetchpriority="high" decoding="sync" src="登鹳雀楼_img/img_1.webp" alt="第 1 句插画" loading="lazy" decoding="async">
+        <span class="line-badge">第 1 句</span>
+      </div>
+      <div class="poem-text">
+        <h2 class="line-original">白日依山尽</h2>
+        <p class="line-translation">白白的大太阳，慢慢地躲到山后面去啦。</p>
+        <button class="play-btn" data-audio="audio1" aria-label="朗读第 1 句">
+          <span class="play-icon">🔊</span>
+          <span class="play-text">点我听讲解</span>
+        </button>
+        <audio preload="none" id="audio1" preload="none">
+          <source src="登鹳雀楼_img/bg_audio_1.m4a" type="audio/mp4">
+        </audio>
+      </div>
+    </section>
+        
+    <section class="poem-card">
+      <div class="poem-illustration">
+        <img loading="lazy" decoding="async" src="登鹳雀楼_img/img_2.webp" alt="第 2 句插画" loading="lazy" decoding="async">
+        <span class="line-badge">第 2 句</span>
+      </div>
+      <div class="poem-text">
+        <h2 class="line-original">黄河入海流</h2>
+        <p class="line-translation">黄河水哗啦哗啦，一直一直地流进大海里去。</p>
+        <button class="play-btn" data-audio="audio2" aria-label="朗读第 2 句">
+          <span class="play-icon">🔊</span>
+          <span class="play-text">点我听讲解</span>
+        </button>
+        <audio preload="none" id="audio2" preload="none">
+          <source src="登鹳雀楼_img/bg_audio_2.m4a" type="audio/mp4">
+        </audio>
+      </div>
+    </section>
+        
+    <section class="poem-card">
+      <div class="poem-illustration">
+        <img loading="lazy" decoding="async" src="登鹳雀楼_img/img_3.webp" alt="第 3 句插画" loading="lazy" decoding="async">
+        <span class="line-badge">第 3 句</span>
+      </div>
+      <div class="poem-text">
+        <h2 class="line-original">欲穷千里目</h2>
+        <p class="line-translation">想看到更远更远的地方。</p>
+        <button class="play-btn" data-audio="audio3" aria-label="朗读第 3 句">
+          <span class="play-icon">🔊</span>
+          <span class="play-text">点我听讲解</span>
+        </button>
+        <audio preload="none" id="audio3" preload="none">
+          <source src="登鹳雀楼_img/bg_audio_3.m4a" type="audio/mp4">
+        </audio>
+      </div>
+    </section>
+        
+    <section class="poem-card">
+      <div class="poem-illustration">
+        <img loading="lazy" decoding="async" src="登鹳雀楼_img/img_4.webp" alt="第 4 句插画" loading="lazy" decoding="async">
+        <span class="line-badge">第 4 句</span>
+      </div>
+      <div class="poem-text">
+        <h2 class="line-original">更上一层楼</h2>
+        <p class="line-translation">那就再爬高一层楼吧！</p>
+        <button class="play-btn" data-audio="audio4" aria-label="朗读第 4 句">
+          <span class="play-icon">🔊</span>
+          <span class="play-text">点我听讲解</span>
+        </button>
+        <audio preload="none" id="audio4" preload="none">
+          <source src="登鹳雀楼_img/bg_audio_4.m4a" type="audio/mp4">
+        </audio>
+      </div>
+    </section>
+        
+
+  <section class="story-card">
+    <div class="story-head">
+      <h2>诗人小故事</h2>
+      <button class="play-btn" data-audio="audioStory" aria-label="朗读诗人故事">
+        <span class="play-icon">🎙️</span>
+        <span class="play-text">听故事</span>
+      </button>
+    </div>
+    <p>很久很久以前，有一个叫王之涣的小哥哥。
+
+他比你们大不了多少，只有十几岁的时候，就已经会写诗啦。
+
+有一天傍晚，他来到一座很高的木楼上面。这座楼叫「鹳雀楼」，因为经常有鹳鸟飞来休息而得名。
+
+他站在楼顶往下看：哇！前面是一条好大好大的黄河，哗啦哗啦地流着，一直流到大海里去。
+
+他回头看：哇！太阳公公正在慢慢地躲到山后面去啦，把整个天空染成了橙红色和金黄色，好美好美。
+
+他突然想：如果我再爬高一点，是不是就能看到更远更远的地方？
+
+于是他写了四句话，就是小朋友刚才读的这首《登鹳雀楼》。
+
+一千多年过去了，今天小朋友站在这座楼上，还是会被眼前的风景美到呢。</p>
+    <audio preload="none" id="audioStory" preload="none">
+      <source src="登鹳雀楼_img/bg_audio_5.m4a" type="audio/mp4">
+    </audio>
+  </section>
+
+  <section class="facts-section">
+    <h2>✨ 古诗小知识</h2>
+    
+    <div class="fact-card">
+      <div class="fact-emoji">🏯</div>
+      <div class="fact-text">
+        <h3 class="fact-title">鹳雀楼在哪里？</h3>
+        <p class="fact-body">鹳雀楼在今天的山西省，因为经常有鹳鸟飞来休息，所以叫这个名字。它一共有六层，是中国最有名的古楼之一。</p>
+      </div>
+    </div>
+        
+    <div class="fact-card">
+      <div class="fact-emoji">🌊</div>
+      <div class="fact-text">
+        <h3 class="fact-title">黄河为什么是黄的？</h3>
+        <p class="fact-body">黄河是中国第二长的河。它流过黄土高原，把很多黄色的泥土冲到水里，所以河水就变成了黄色，叫「黄河」。</p>
+      </div>
+    </div>
+        
+    <div class="fact-card">
+      <div class="fact-emoji">📐</div>
+      <div class="fact-text">
+        <h3 class="fact-title">「更上一层楼」是什么意思？</h3>
+        <p class="fact-body">这句话是说：想要看得更远，就要站得更高。今天小朋友学任何新本领，都要像爬楼一样，一层一层往上爬，才能越来越厉害！</p>
+      </div>
+    </div>
+        
+  </section>
+
+  <section class="full-poem-card">
+    <h2>🌙 完整诗篇 🌙</h2>
+    <div class="full-poem-meta">《登鹳雀楼》 · 唐 · 王之涣</div>
+    <div class="full-poem-text">
+      <span class="line">白日依山尽</span>
+      <span class="line">黄河入海流</span>
+      <span class="line">欲穷千里目</span>
+      <span class="line">更上一层楼</span>
+    </div>
+    <button class="play-btn-big" data-audio="audioFull" aria-label="完整朗读这首诗">
+      <span class="play-icon">📖</span>
+      <span class="play-text">完整朗读一遍</span>
+    </button>
+    <audio preload="none" id="audioFull" preload="none">
+      <source src="登鹳雀楼_img/bg_audio_6.m4a" type="audio/mp4">
+    </audio>
+  </section>
+
+  <footer class="footer">
+    <div>为奥莉和茉莉精心制作 🌸</div>
+    <div class="badge-local">💾 本地离线绘本 · 双击即可阅读</div>
+  </footer>
+
+</div>
+<script>
+(function() {
+  let currentAudio = null, currentBtn = null;
+  document.querySelectorAll('.play-btn, .play-btn-big').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const audioId = this.getAttribute('data-audio');
+      const audio = document.getElementById(audioId);
+      if (!audio) return;
+      if (currentAudio === audio && !audio.paused) {
+        audio.pause();
+        resetBtn();
+        return;
+      }
+      if (currentAudio && currentAudio !== audio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        resetBtn();
+      }
+      audio.currentTime = 0;
+      audio.play().then(() => {
+        currentAudio = audio;
+        currentBtn = this;
+        this.classList.add('playing');
+        const t = this.querySelector('.play-text');
+        if (t) t.textContent = '播放中…';
+      }).catch(err => console.error('播放失败:', err));
+      audio.onended = () => resetBtn();
+    });
+  });
+  function resetBtn() {
+    if (currentBtn) {
+      currentBtn.classList.remove('playing');
+      const t = currentBtn.querySelector('.play-text');
+      if (t) {
+        if (currentBtn.classList.contains('play-btn-big')) t.textContent = '完整朗读一遍';
+        else if (currentBtn.getAttribute('data-audio') === 'audioStory') t.textContent = '听故事';
+        else t.textContent = '点我听讲解';
+      }
+      currentAudio = null;
+      currentBtn = null;
+    }
+  }
+})();
+</script>
+<script>
+(function(){var i=document.querySelectorAll("img[loading=lazy]");if(!i.length)i=document.querySelectorAll("img");var l=0,a=document.querySelectorAll("audio");function p(){a.forEach(function(e){e.preload="auto"})}i.forEach(function(e){if(e.complete){l++;if(l===1)p()}else e.addEventListener("load",function(){l++;if(l===1)p()},{once:!0})})})();
+</script>
+</body>
+</html>
