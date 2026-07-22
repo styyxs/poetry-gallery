@@ -170,12 +170,6 @@ body {
   .card-illus{height:140px}.card-body{padding:18px 20px 0}
 }
 
-.illus-stamp {
-  position:absolute;top:14px;right:14px;
-  font-family:"Ma Shan Zheng","Noto Serif SC",cursive;
-  font-size:22px;color:var(--red);opacity:.7;
-  line-height:1;
-}
 </style>
 </head>
 <body>
@@ -218,11 +212,6 @@ function pickIllus(tags) {
   return ILLUS.default;
 }
 
-function pickStamp(author) {
-  const map = { '唐':'唐','宋':'宋','元':'元','明':'明','清':'清' };
-  for (const [k,v] of Object.entries(map)) if (author.includes(k)) return `<span class="illus-stamp">${v}</span>`;
-  return '<span class="illus-stamp">詩</span>';
-}
 
 fetch('poems.json?' + Date.now())
   .then(r => r.json())
@@ -235,7 +224,6 @@ fetch('poems.json?' + Date.now())
       card.target = '_blank';
       card.innerHTML =
         pickIllus(poem.tags) +
-        pickStamp(poem.author) +
         '<div class="card-body">' +
           '<div class="card-title">' + poem.title + '</div>' +
           '<div class="card-author">' + poem.author + '</div>' +
