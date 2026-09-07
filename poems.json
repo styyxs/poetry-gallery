@@ -45,5 +45,18 @@
       "湖"
     ],
     "illus": "poems/望洞庭_img/card_cover.webp"
+  },
+  {
+    "title": "鸟鸣涧",
+    "author": "唐·王维",
+    "file": "poems/鸟鸣涧.html",
+    "summary": "人闲桂花落，夜静春山空，月出惊山鸟，时鸣春涧中。",
+    "tags": [
+      "山",
+      "月",
+      "鸟",
+      "春"
+    ],
+    "illus": "poems/鸟鸣涧_img/card_cover.webp"
   }
 ]
